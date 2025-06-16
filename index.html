@@ -3,194 +3,578 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="freelancehunt" content="fe6e7ef01bec7b2" />
-<title>Залучення підписників</title>
+<title>Здорове Харчування - Ваш Путівник до Здоров'я</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
-
-  * {
+  /* Скидання стилів */
+  *, *::before, *::after {
     box-sizing: border-box;
   }
-
   body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(270deg, #667eea, #764ba2, #ff6f61, #ff8a76);
-    background-size: 800% 800%;
-    animation: gradientShift 15s ease infinite;
-    color: #fff;
+    margin: 0; padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f9fafb;
+    color: #222;
+    line-height: 1.6;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  img {
+    max-width: 100%;
+    display: block;
+  }
+  /* Контейнер */
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+  }
+  /* Хедер */
+  header {
+    background: #1e7a1e;
+    color: white;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 2px 8px rgb(30 122 30 / 0.4);
+  }
+  header .container {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.8rem;
+  }
+  nav ul {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex;
+    gap: 25px;
+  }
+  nav ul li a {
+    font-weight: 600;
+    padding: 6px 8px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  nav ul li a:hover,
+  nav ul li a.active {
+    background: #4ade80;
+    color: white;
+  }
+  /* Головна секція */
+  #home {
+    display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
-    overflow-x: hidden;
-    position: relative;
-    z-index: 1;
+    height: 90vh;
+    background: linear-gradient(135deg, #4ade80, #15803d);
+    color: white;
+    text-align: center;
+    flex-direction: column;
+    padding: 0 15px;
   }
-
-  @keyframes gradientShift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-  .silhouette {
-    position: fixed;
-    top: 50%;
-    width: 200px;
-    height: 400px;
-    background: url('https://upload.wikimedia.org/wikipedia/commons/3/33/Generic_human_silhouette.svg') no-repeat center center;
-    background-size: contain;
-    opacity: 0.07;
-    filter: grayscale(100%);
-    transform: translateY(-50%);
-    pointer-events: none;
-    user-select: none;
-    z-index: 0;
-  }
-
-  .silhouette.left {
-    left: 10px;
-  }
-
-  .silhouette.right {
-    right: 10px;
-    transform: translateY(-50%) scaleX(-1);
-  }
-
-  h1 {
+  #home h2 {
     font-size: 3rem;
     margin-bottom: 15px;
-    opacity: 0;
-    animation: fadeInDown 1s forwards;
+    font-weight: 900;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
   }
-
-  h2 {
-    margin-top: 50px;
-    font-weight: 600;
-    font-size: 1.8rem;
-    opacity: 0;
-    animation: fadeInUp 1s forwards;
-    animation-delay: 0.8s;
-  }
-
-  a.button, button {
-    margin-top: 20px;
-    background: #ff6f61;
-    border: none;
-    padding: 18px 40px;
+  #home p {
     font-size: 1.3rem;
-    font-weight: 700;
-    border-radius: 50px;
-    cursor: pointer;
-    color: #fff;
-    text-decoration: none;
-    box-shadow: 0 8px 20px rgba(255,111,97,0.5);
-    transition: background 0.3s ease, transform 0.2s ease;
-    display: inline-flex;
+    max-width: 600px;
+    font-weight: 500;
+    text-shadow: 0 1px 5px rgba(0,0,0,0.25);
+  }
+  /* Про нас */
+  #about {
+    padding: 60px 0;
+    background: white;
+  }
+  #about .container {
+    display: flex;
+    gap: 40px;
     align-items: center;
-    gap: 10px;
-    opacity: 0;
-    animation: fadeInUp 1s forwards;
-    animation-delay: 1.2s;
+    flex-wrap: wrap;
   }
-
-  a.button:hover, button:hover {
-    background: #ff8a76;
-    transform: scale(1.05);
+  #about img {
+    border-radius: 12px;
+    max-width: 320px;
+    box-shadow: 0 4px 20px rgb(0 0 0 / 0.1);
   }
-
-  form {
-    width: 100%;
-    max-width: 420px;
-    margin-top: 15px;
-    opacity: 0;
-    animation: fadeInUp 1s forwards;
-    animation-delay: 1.6s;
+  #about .text {
+    flex: 1;
+    min-width: 280px;
   }
-
-  input[type="email"] {
-    width: 100%;
-    padding: 15px 25px;
-    border-radius: 50px;
-    border: none;
+  #about h2 {
+    font-size: 2.4rem;
+    margin-bottom: 15px;
+    color: #166534;
+  }
+  #about p {
     font-size: 1.1rem;
+    color: #444;
+    line-height: 1.7;
+  }
+  /* Правила */
+  #rules {
+    background: #e6f4ea;
+    padding: 60px 0;
+  }
+  #rules .container {
+    max-width: 900px;
+    margin: auto;
+  }
+  #rules h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #15803d;
+    font-weight: 700;
+  }
+  #rules ul {
+    list-style: inside disc;
+    font-size: 1.1rem;
+    color: #2f4f2f;
+  }
+  #rules ul li {
+    margin-bottom: 12px;
+  }
+  /* Поради */
+  #portfolio {
+    background: #ecfdf5;
+    padding: 60px 0;
+  }
+  #portfolio h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #15803d;
+    font-weight: 700;
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 25px;
+  }
+  .project-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgb(0 0 0 / 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 14px 40px rgb(0 0 0 / 0.15);
+  }
+  .project-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  .project-content {
+    padding: 20px;
+  }
+  .project-content h3 {
+    margin: 0 0 10px;
+    color: #15803d;
+  }
+  .project-content p {
+    margin: 0;
+    color: #555;
+    font-size: 0.95rem;
+  }
+  /* Рецепти */
+  #recipes {
+    background: #fff;
+    padding: 60px 0;
+  }
+  #recipes .container {
+    max-width: 900px;
+    margin: auto;
+  }
+  #recipes h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #15803d;
+    font-weight: 700;
+  }
+  .recipe {
+    background: #f0fdf4;
+    border-radius: 12px;
+    padding: 25px 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 20px rgb(0 0 0 / 0.05);
+  }
+  .recipe h3 {
+    margin-top: 0;
+    color: #166534;
+  }
+  .recipe ul {
+    list-style: inside disc;
+    margin-bottom: 15px;
+  }
+  .recipe ul li {
+    margin-bottom: 8px;
+  }
+  /* FAQ */
+  #faq {
+    background: #e6f4ea;
+    padding: 60px 0;
+  }
+  #faq .container {
+    max-width: 900px;
+    margin: auto;
+  }
+  #faq h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #15803d;
+    font-weight: 700;
+  }
+  .faq-item {
+    margin-bottom: 25px;
+  }
+  .faq-item h3 {
+    margin: 0 0 8px;
+    color: #166534;
+    cursor: pointer;
+  }
+  .faq-item p {
+    margin: 0;
+    color: #444;
+    display: none;
+  }
+  .faq-item.active p {
+    display: block;
+  }
+  /* Контакт */
+  #contact {
+    background: white;
+    padding: 60px 0;
+  }
+  #contact h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #15803d;
+    font-weight: 700;
+  }
+  form {
+    max-width: 480px;
+    margin: auto;
+    background: #f9fafb;
+    padding: 30px 35px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgb(0 0 0 / 0.1);
+  }
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+  }
+  input, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+  }
+  input:focus, textarea:focus {
     outline: none;
-    transition: box-shadow 0.3s ease;
+    border-color: #4ade80;
+    box-shadow: 0 0 8px #4ade80aa;
   }
-
-  input[type="email"]:focus {
-    box-shadow: 0 0 10px 3px rgba(255,111,97,0.7);
+  button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: white;
+    background: #4ade80;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
-
-  input[type="email"]::placeholder {
-    color: #d3d3d3;
+  button:hover {
+    background: #15803d;
   }
-
-  @keyframes fadeInDown {
-    from {
-      opacity: 0;
-      transform: translateY(-30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .form-message {
+    text-align: center;
+    font-weight: 600;
+    margin-top: 15px;
   }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .form-error {
+    color: #dc2626;
   }
-
+  .form-success {
+    color: #16a34a;
+  }
+  /* Футер */
+  footer {
+    background: #1e7a1e;
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    font-size: 0.9rem;
+    margin-top: 40px;
+  }
   /* Адаптивність */
-  @media (max-width: 480px) {
-    h1 {
-      font-size: 2.2rem;
+  @media (max-width: 768px) {
+    #about .container {
+      flex-direction: column;
+      text-align: center;
     }
-    h2 {
-      font-size: 1.4rem;
+    #about .text {
+      max-width: 100%;
     }
-    a.button, button {
-      padding: 14px 30px;
-      font-size: 1.1rem;
-    }
-    .silhouette {
-      display: none; /* ховаємо на мобільних для кращої читабельності */
-    }
+  }
+  /* Плавний скрол */
+  html {
+    scroll-behavior: smooth;
   }
 </style>
 </head>
 <body>
-  <div class="silhouette left"></div>
-  <div class="silhouette right"></div>
 
-  <h1><i class="fab fa-instagram"></i> Підпишись на наш Instagram</h1>
-  <a href="https://instagram.com/your_instagram" target="_blank" class="button">
-    <i class="fab fa-instagram"></i> Перейти в Instagram
-  </a>
+<header>
+  <div class="container">
+    <h1>Здорове Харчування</h1>
+    <nav>
+      <ul>
+        <li><a href="#home" class="active">Головна</a></li>
+        <li><a href="#about">Про Нас</a></li>
+        <li><a href="#rules">Правила</a></li>
+        <li><a href="#portfolio">Поради</a></li>
+        <li><a href="#recipes">Рецепти</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Контакти</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-  <h2>Отримай безкоштовний гайд</h2>
-  <form action="https://formsubmit.co/youremail@example.com" method="POST">
-    <input type="email" name="email" placeholder="Введи свій email" required />
-    <input type="hidden" name="_subject" value="Новий підписник на гайд!" />
-    <input type="hidden" name="_next" value="consultation.html" />
-    <button type="submit"><i class="fas fa-envelope"></i> Отримати гайд</button>
-  </form>
+<section id="home">
+  <div>
+    <h2>Ваш Путівник до Здорового Спосібу Життя</h2>
+    <p>Дізнавайтеся найкращі поради, рецепти та інформацію про правильне харчування для щасливого й здорового життя.</p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <img src="https://images.unsplash.com/photo-1506806732259-39c2d0268443?auto=format&fit=crop&w=320&q=80" alt="Здорова їжа" />
+    <div class="text">
+      <h2>Про Нас</h2>
+      <p>Ми — команда ентузіастів здорового харчування, яка прагне поширювати знання про користь правильного раціону. Наш сайт допомагає знаходити прості і смачні рецепти, практичні поради та науково обґрунтовані факти.</p>
+      <p>Наша мета — допомогти вам зробити свідомий вибір на користь здоров'я, підвищити рівень енергії та покращити якість життя через збалансоване харчування.</p>
+      <p>Ми віримо, що здорове харчування — це не обмеження, а шлях до гармонії з тілом і душею.</p>
+    </div>
+  </div>
+</section>
+
+<section id="rules">
+  <div class="container">
+    <h2>Основні Правила Здорового Харчування</h2>
+    <ul>
+      <li>Їжте різноманітно: включайте овочі, фрукти, цільнозернові продукти, білки та корисні жири.</li>
+      <li>Обмежуйте споживання оброблених і надмірно солодких продуктів.</li>
+      <li>Пийте достатньо води — принаймні 1.5-2 літри на день.</li>
+      <li>Їжте регулярно, уникайте пропускання прийомів їжі.</li>
+      <li>Контролюйте розмір порцій, не переїдайте.</li>
+      <li>Уникайте зайвого споживання солі та насичених жирів.</li>
+      <li>Обирайте натуральні продукти без штучних добавок.</li>
+      <li>Звертайте увагу на якість сну та фізичну активність.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="container">
+    <h2>Корисні Поради</h2>
+    <div class="projects-grid">
+      <article class="project-card" tabindex="0" role="button" aria-pressed="false">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=400&q=80" alt="Сніданок" />
+        <div class="project-content">
+          <h3>Ідеальний Сніданок</h3>
+          <p>Дізнайтеся, які продукти допоможуть вам розпочати день з енергією та покращити обмін речовин. Наприклад, овсянка з горіхами та ягодами, яйця, зелені овочі.</p>
+        </div>
+      </article>
+      <article class="project-card" tabindex="0" role="button" aria-pressed="false">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Зелений смузі" />
+        <div class="project-content">
+          <h3>Рецепти Зелених Смузі</h3>
+          <p>Спробуйте наші прості та поживні рецепти зелених смузі для покращення самопочуття і очищення організму. Використовуйте шпинат, авокадо, яблука та банани.</p>
+        </div>
+      </article>
+      <article class="project-card" tabindex="0" role="button" aria-pressed="false">
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=400&q=80" alt="Вода" />
+        <div class="project-content">
+          <h3>Важливість Гідратації</h3>
+          <p>Дізнайтесь, чому достатнє споживання води — ключ до здоров'я та як полюбити цю корисну звичку. Вода покращує травлення, стан шкіри і енергію.</p>
+        </div>
+      </article>
+      <article class="project-card" tabindex="0" role="button" aria-pressed="false">
+        <img src="https://images.unsplash.com/photo-1468071174046-657d9d351a40?auto=format&fit=crop&w=400&q=80" alt="Суп" />
+        <div class="project-content">
+          <h3>Легкі Вечері</h3>
+          <p>Прості рецепти легких і корисних вечерь, які допоможуть зберегти баланс і гарний настрій. Наприклад, овочевий суп або салат із кіноа.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="recipes">
+  <div class="container">
+    <h2>Корисні Рецепти</h2>
+    <div class="recipe">
+      <h3>Смузі з Авокадо і Шпинатом</h3>
+      <p><strong>Інгредієнти:</strong></p>
+      <ul>
+        <li>1 стигле авокадо</li>
+        <li>1 великий жмень шпинату</li>
+        <li>1 банан</li>
+        <li>250 мл мигдалевого молока</li>
+        <li>1 ч.л. меду (за бажанням)</li>
+      </ul>
+      <p><strong>Приготування:</strong> Покладіть усі інгредієнти в блендер і збийте до однорідності. Подавайте охолодженим.</p>
+    </div>
+        <div class="recipe">
+      <h3>Овсянка з Ягодами та Горіхами</h3>
+      <p><strong>Інгредієнти:</strong></p>
+      <ul>
+        <li>100 г вівсяних пластівців</li>
+        <li>200 мл нежирного молока або рослинного напою</li>
+        <li>Жменя свіжих або заморожених ягід (полуниця, чорниця)</li>
+        <li>30 г подрібнених горіхів (мигдаль, волоські)</li>
+        <li>1 ст.л. меду або кленового сиропу</li>
+        <li>Щіпка кориці (за бажанням)</li>
+      </ul>
+      <p><strong>Приготування:</strong> Вівсянку залийте молоком і варіть на повільному вогні 5-7 хвилин, помішуючи. Додайте ягоди, горіхи, мед і корицю. Перемішайте і подавайте теплим.</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <h2>Часті Питання</h2>
+    <div class="faq-item">
+      <h3>Чи треба повністю виключати цукор із раціону?</h3>
+      <p>Повне виключення цукру не завжди необхідне. Важливо контролювати його кількість і віддавати перевагу натуральним джерелам солодощів, як фрукти. Оброблені цукри краще обмежити.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Як часто потрібно їсти?</h3>
+      <p>Оптимально їсти 4-5 разів на день невеликими порціями, щоб підтримувати стабільний рівень енергії і уникати переїдання.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Чи можна їсти вуглеводи ввечері?</h3>
+      <p>Так, важливо враховувати загальний баланс калорій і якість вуглеводів. Вечірні вуглеводи з цільнозернових продуктів і овочів не зашкодять, якщо не переїдати.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Які продукти допомагають підвищити імунітет?</h3>
+      <p>Фрукти і овочі, багаті на вітаміни C і D, пробіотики (йогурти), горіхи та насіння — усе це сприяє зміцненню імунітету.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <h2>Зв'язатися з Нами</h2>
+    <form id="contact-form" novalidate>
+      <label for="name">Ім'я</label>
+      <input type="text" id="name" name="name" required placeholder="Ваше ім'я" />
+      
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required placeholder="example@mail.com" />
+      
+      <label for="message">Повідомлення</label>
+      <textarea id="message" name="message" rows="5" required placeholder="Ваше повідомлення"></textarea>
+      
+      <button type="submit">Відправити</button>
+      <div class="form-message" id="form-message"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Здорове Харчування. Всі права захищені.</p>
+</footer>
+
+<script>
+  // Навігація: підсвічування активної вкладки
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('nav ul li a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 80;
+      if (pageYOffset >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  });
+
+  // FAQ аккордеон
+  const faqItems = document.querySelectorAll('.faq-item h3');
+  faqItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const parent = item.parentElement;
+      parent.classList.toggle('active');
+    });
+  });
+
+  // Обробка форми контакту
+  const form = document.getElementById('contact-form');
+  const formMessage = document.getElementById('form-message');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+
+    if (!name || !email || !message) {
+      formMessage.textContent = 'Будь ласка, заповніть усі поля.';
+      formMessage.className = 'form-message form-error';
+      return;
+    }
+    // Просте email валідування
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      formMessage.textContent = 'Введіть коректну електронну адресу.';
+      formMessage.className = 'form-message form-error';
+      return;
+    }
+    // Якщо все добре
+    formMessage.textContent = 'Дякуємо! Ваше повідомлення відправлено.';
+    formMessage.className = 'form-message form-success';
+    form.reset();
+  });
+</script>
+
 </body>
 </html>
